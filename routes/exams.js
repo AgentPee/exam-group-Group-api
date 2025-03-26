@@ -22,3 +22,14 @@ router.post('/', (req, res) => {
   exams.push(newExam);
   res.status(201).json(newExam);
 });
+
+router.put('/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const updatedExam = req.body;
+    
+    exams = exams.map(exam => 
+      exam.id === id ? { ...exam, ...updatedExam } : exam
+    );
+    
+    res.json(updatedExam);
+  });
