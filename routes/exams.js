@@ -22,3 +22,34 @@ router.post('/', (req, res) => {
   exams.push(newExam);
   res.status(201).json(newExam);
 });
+
+
+
+router.post('/', (req, res) => {
+    try {
+      if (!req.body.name || !req.body.date) {
+        return res.status(400).json({
+          success: false,
+          error: 'Please include name and date'
+        });
+      }
+  
+      const newExam = {
+        id: exams.length + 1,
+        name: req.body.name,
+        date: req.body.date
+      };
+  
+      exams.push(newExam);
+      
+      res.status(201).json({
+        success: true,
+        data: newExam
+      });
+    } catch (err) {
+      res.status(500).json({
+        success: false,
+        error: 'Server Error'
+      });
+    }
+  });
