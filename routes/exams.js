@@ -27,11 +27,11 @@ router.get('/', (req, res) => {
       error: 'Server Error'
     });
   }
+  res.json(exams);
 });
 
     
-    res.json(exams);
-  });
+   
 
 let exams = []; 
 
