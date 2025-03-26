@@ -14,3 +14,11 @@ router.get('/', (req, res) => {
     ];
     res.json(exams);
   });
+
+let exams = []; 
+
+router.post('/', (req, res) => {
+  const newExam = req.body;
+  exams.push(newExam);
+  res.status(201).json(newExam);
+});
