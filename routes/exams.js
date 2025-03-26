@@ -14,6 +14,7 @@ let exams = [
 
 
 router.get('/', (req, res) => {
+
   try {
     res.status(200).json({
       success: true,
@@ -27,3 +28,27 @@ router.get('/', (req, res) => {
     });
   }
 });
+
+    
+    res.json(exams);
+  });
+
+let exams = []; 
+
+router.post('/', (req, res) => {
+  const newExam = req.body;
+  exams.push(newExam);
+  res.status(201).json(newExam);
+});
+
+router.put('/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const updatedExam = req.body;
+    
+    exams = exams.map(exam => 
+      exam.id === id ? { ...exam, ...updatedExam } : exam
+    );
+    
+    res.json(updatedExam);
+  });
+
